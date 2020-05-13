@@ -80,3 +80,10 @@ else {
 }
 
 console.log("The winner is " + winner + ".");
+
+var countryResultsJS = document.getElementById("countryResults");
+countryResults.children[0].children[0].children[0].innerText = candidate1.name; 
+countryResults.children[0].children[0].children[1].innerText = candidate1.totalVotes;
+countryResults.children[0].children[0].children[2].innerText = candidate2.name;
+countryResults.children[0].children[0].children[3].innerText = candidate2.totalVotes;
+countryResults.children[0].children[0].children[5].innerText = winner;
