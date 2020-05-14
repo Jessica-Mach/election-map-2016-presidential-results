@@ -23,7 +23,6 @@ var winner = " ";
 var candidate1 = makePolitician("Susie Woo", [132,17,11]);
 var candidate2 = makePolitician("Reshmika Lata", [245,141,136]);
 
-console.log(candidate1.partyColor + " " + candidate2.partyColor);
 candidate1.electionResults = [5, 1, 7, 2, 33, 6, 4, 2, 1, 14, 8, 3, 1, 11, 11, 0, 5, 3, 3, 3, 7, 4, 8, 9, 3, 7, 2, 2, 4, 2, 8, 3,
 								 15, 15, 2, 12, 0, 4, 13, 1, 3, 2, 8, 21, 3, 2, 11, 1, 3, 7, 2];
 candidate2.electionResults = [4, 2, 4, 4, 22, 3, 3, 1, 2, 15, 8, 1, 3, 9, 0, 6, 1, 5, 5, 1, 3, 7, 8, 1, 3, 3, 1, 3, 2, 2, 6, 2, 
@@ -47,26 +46,22 @@ var setStateResults = function(state){
 
 	if(candidate1.electionResults[state] > candidate2.electionResults[state]){
 		theStates[state].winner = candidate1;
-	} 
-	else if (candidate1.electionResults[state] < candidate2.electionResults[state]){
+	} else if (candidate1.electionResults[state] < candidate2.electionResults[state]){
 		theStates[state].winner = candidate2;
 	}
 	var stateWinner = theStates[state].winner;
 	
 	if(stateWinner !== null){
 		theStates[state].rgbColor = stateWinner.partyColor;
-	}
-	else{
+	} else{
 		theStates[state].rgbColor = [11,32,57];
 	}
 
 	if (candidate1.totalVotes > candidate2.totalVotes){
 		winner = candidate1.name;
-	}
-	else if (candidate1.totalVotes < candidate2.totalVotes){
+	} else if (candidate1.totalVotes < candidate2.totalVotes){
 		winner = candidate2.name;
-	}
-	else {
+	} else {
 		winner = "It's a tie!";
 	}
 
@@ -87,35 +82,21 @@ var setStateResults = function(state){
 	var candidate1Results = body.children[0].children[1];
 	var candidate2Name = body.children[1].children[0];
 	var candidate2Results = body.children[1].children[1];
-	var winnersName = body.children[2].children[1];
+	var winnersName = body.children[2].children[1];	
 	stateName.innerText = theStates[state].nameFull;
 	abbrev.innerText = "(" + theStates[state].nameAbbrev + ")";
 	candidate1Name.innerText = candidate1.name;
 	candidate1Results.innerText = candidate1.electionResults[state];
 	candidate2Name.innerText = candidate2.name;
 	candidate2Results.innerText = candidate2.electionResults[state];
-	winnersName.innerText = stateWinner.name;
-
-	console.log(theStates[state].winner);
-	console.log(winner);
+	if (theStates[state].winner === null){
+    winnersName.innerText = "DRAW";
+	} else {
+    winnersName.innerText = theStates[state].winner.name;
+	}
 };
 
 candidate1.tallyVotes();
 candidate2.tallyVotes();
-
-
-
-console.log(candidate1.name + ": " + candidate1.electionResults);
-console.log(candidate2.name + ": " + candidate2.electionResults);
-console.log(candidate1.name + ": " + candidate1.totalVotes);
-console.log(candidate2.name + ": " + candidate2.totalVotes);
-
-
-
-console.log("The winner is " + winner + ".");
-
-
-
-
 
 
