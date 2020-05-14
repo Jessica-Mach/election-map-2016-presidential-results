@@ -4,6 +4,7 @@ var  makePolitician = function(name, partyColor){
 	var politician = {};
 	politician.name = name; // string containing politician name
 	politician.electionResults = null; // array containing votes 
+	//politician.popularVote = null; // array containing popular vote count per state
 	politician.totalVotes = 0; // sum of votes
 	politician.partyColor = partyColor; // represented as RGB values in brackets
 
@@ -20,25 +21,12 @@ var  makePolitician = function(name, partyColor){
 
 var winner = " ";
 
-var candidate1 = makePolitician("Susie Woo", [132,17,11]);
-var candidate2 = makePolitician("Reshmika Lata", [245,141,136]);
+var candidate1 = makePolitician("Donald Trump", [143,61,69]);
+var candidate2 = makePolitician("Hilary Clinton", [45,125,133]); //[11,32,57] (previous navy color)
 
-candidate1.electionResults = [5, 1, 7, 2, 33, 6, 4, 2, 1, 14, 8, 3, 1, 11, 11, 0, 5, 3, 3, 3, 7, 4, 8, 9, 3, 7, 2, 2, 4, 2, 8, 3,
-								 15, 15, 2, 12, 0, 4, 13, 1, 3, 2, 8, 21, 3, 2, 11, 1, 3, 7, 2];
-candidate2.electionResults = [4, 2, 4, 4, 22, 3, 3, 1, 2, 15, 8, 1, 3, 9, 0, 6, 1, 5, 5, 1, 3, 7, 8, 1, 3, 3, 1, 3, 2, 2, 6, 2, 
-								14, 0, 1, 6, 7, 3, 7, 3, 6, 1, 3, 17, 3, 1, 2, 11, 2, 3, 1];
+candidate1.electionResults = [9,3,11,6,0,0,0,0,0,29,16,0,4,0,11,6,6,8,8,1,0,0,16,0,6,10,3,5,0,0,0,0,0,15,3,18,7,0,20,0,9,3,11,36,6,0,0,0,5,10,3];
+candidate2.electionResults = [0,0,0,0,55,9,7,3,3,0,0,3,0,20,0,0,0,0,0,3,10,11,0,10,0,0,0,0,6,4,14,5,29,0,0,0,0,7,0,4,0,0,0,0,0,3,13,8,0,0,0];
 
-// Adjust for Florida recount
-candidate1.electionResults[9] = 1;
-candidate2.electionResults[9] = 28;
-
-// Adjust for California recount
-candidate1.electionResults[4] = 17;
-candidate2.electionResults[4] = 38;
-
-// Adjust for Texas recount
-candidate1.electionResults[43] = 11;
-candidate2.electionResults[43] = 27;
 
 var setStateResults = function(state){
 
@@ -54,7 +42,7 @@ var setStateResults = function(state){
 	if(stateWinner !== null){
 		theStates[state].rgbColor = stateWinner.partyColor;
 	} else{
-		theStates[state].rgbColor = [11,32,57];
+		theStates[state].rgbColor = [245,141,136];
 	}
 
 	if (candidate1.totalVotes > candidate2.totalVotes){
